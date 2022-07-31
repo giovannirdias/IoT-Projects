@@ -105,7 +105,7 @@ void loop(){
     // Envio dos pacotes
     HC12.print(Message);
 
-    count++;
+    count++;   // Contagem de pacotes gerados
 
     delay(10000);
 }
