@@ -1,6 +1,6 @@
 /*
  * Código para controle e envio de dados utilizando apenas o ESP8266
- * Placas: ESP8266 ou ESP32
+ * Placas: ESP8266
  * COM: Geralmente COM6 ou COM7
 */
 
