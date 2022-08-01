@@ -109,26 +109,27 @@ void loop(){
         // Apresentacao das condicoes: estado critico, irrigacao automatica ou falta de recursos
         if (alerta == "true" || water_warning == "true"){
             Serial.println("Notificacao: temperatura fora do limite recomendado ou falta de agua no tanque\n");
-            Blynk.logEvent("Preocupacao", "As condicões de temperatura sao críticas ou falta agua no tanque, o sistema deve estar sendo prejudicado!");
+            Blynk.logEvent("preocupacao", "As condicões de temperatura sao críticas ou falta agua no tanque, o sistema deve estar sendo prejudicado!");
             delay(1000);
         }
         else if ((humidade_solo.toInt() >= 0 && humidade_solo.toInt() < 60) || (humidade.toInt() < 50 || humidade.toInt() > 75)){
              // Condicao de irrigacao necessaria para plantacao
              Serial.println("Notificacao para irrigacao automatica\n");
              // Notificacao no dashboard
-             Blynk.logEvent("Irrigacao_Automatica", "Sistema em estado crítico, modo de irrigacao automatica será ligado");
+             Blynk.logEvent("irrigacao_automatica", "Sistema em estado critico, modo de irrigacao automatica sera ligado");
              Blynk.virtualWrite(V6, 255);  // Motor no estado alto
              delay(1000);
         }
          else{
              // Condicao de irrigacao desnecessaria para plantacao
              Serial.println("Condicoes excelente ou suficientes para o sistema\n");
+             Blynk.logEvent("sistema_normal", "Sistema em estado estavel, modo de irrigacao automatica permanecera desligado");
              Blynk.virtualWrite(V6, 0); // Motor no estado baixo 
              delay(1000);         
          }
     }
     else{
         Serial.println("Pacotes estao vazios, nenhuma informacao foi recebida!\n");
-        Blynk.logEvent("Comunicacao", "Não foi recebido informacoes, problemas com a transmissao ou recepcao dos dados");
+        Blynk.logEvent("comunicacao", "Nao foi recebido informacoes, problemas com a transmissao ou recepcao dos dados");
     }
 }

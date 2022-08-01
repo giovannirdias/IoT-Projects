@@ -154,14 +154,14 @@ void dashboard_communication(){
     // Apresentacao das condicoes: estado critico, irrigacao automatica ou falta de recursos
     if (alerta == true || water == true){
         Serial.println("Notificacao: temperatura fora do limite recomendado ou falta de agua no tanque\n");
-        Blynk.logEvent("Preocupacao", "As condicões de temperatura sao críticas ou falta agua no tanque, o sistema deve estar sendo prejudicado!");
+        Blynk.logEvent("preocupacao", "As condicões de temperatura sao críticas ou falta agua no tanque, o sistema deve estar sendo prejudicado!");
         delay(1000);
     }
     else if ((humidade_solo >= 0 && humidade_solo < 60) || (humidade < 50 || humidade > 75)){
          // Condicao de irrigacao necessaria para plantacao
          Serial.println("Notificacao para irrigacao automatica\n");
          // Notificacao no dashboard
-         Blynk.logEvent("Irrigacao_Automatica", "Sistema em estado crítico, modo de irrigacao automatica será ligado");
+         Blynk.logEvent("irrigacao_automatica", "Sistema em estado crítico, modo de irrigacao automatica será ligado");
          Blynk.virtualWrite(V6, 255);  // Motor no estado alto
          delay(1000);
     }
