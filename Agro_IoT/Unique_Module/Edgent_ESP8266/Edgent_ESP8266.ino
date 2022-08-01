@@ -168,6 +168,7 @@ void dashboard_communication(){
     else{
         // Condicao de irrigacao desnecessaria para plantacao
         Serial.println("Condicoes excelente ou suficientes para o sistema\n");
+        Blynk.logEvent("sistema_normal", "Sistema em estado estavel, modo de irrigacao automatica permanecera desligado");
         Blynk.virtualWrite(V6, 0); // Motor no estado baixo 
         delay(1000);         
     }
