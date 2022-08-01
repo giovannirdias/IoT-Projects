@@ -106,13 +106,13 @@ void loop() {
                        Serial.println("Notificacao para irrigacao automatica\n");
                        // Notificacao no dashboard
                        Blynk.logEvent("Irrigacao_Automatica", "Sistema em estado crítico, modo de irrigacao automatica será ligado");
-                       Blynk.virtualWrite(V4, 255);  // Motor no estado alto
+                       Blynk.virtualWrite(V6, 255);  // Motor no estado alto
                        delay(1000);
                   }
                    else{
                        // Condicao de irrigacao desnecessaria para plantacao
                        Serial.println("Condicoes excelente ou suficientes para o sistema\n");
-                       Blynk.virtualWrite(V5, 0); // Motor no estado baixo 
+                       Blynk.virtualWrite(V6, 0); // Motor no estado baixo 
                        delay(1000);         
                    }
                }
