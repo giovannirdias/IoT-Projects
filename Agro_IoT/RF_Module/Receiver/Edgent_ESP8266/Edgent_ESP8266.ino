@@ -22,6 +22,7 @@
 #include <SoftwareSerial.h>
 #include <SPI.h>
 #include "BlynkEdgent.h"
+#include <ESP8266WiFi.h>   
 
 // Criar a instancia de classes (objetos)
 SoftwareSerial HC12(10, 11); // HC-12 TX Pin, HC-12 RX Pin

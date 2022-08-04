@@ -26,18 +26,23 @@ SoftwareSerial HC12(10, 11); // HC-12 TX Pin, HC-12 RX Pin
 String Message = "";
 
 // Variaveis auxiliares 
-uint8_t count = 0;
-unsigned int Wcount = 0;
+// 1) Envio de infos
+uint8_t count = 0;   // Contagem de pacotes enviados
+// 2) Sensor de humidade do solo
+// Parametros de limitacao do valores mensurados para o sensor de humidade do solo
 const int Air_Value = 600;
 const int Water_Value = 450;
-const float FATOR_CALIBRACAO = 4.5;
 uint8_t humidade_solo_valor = 0;
 uint8_t humidade_solo = 0;
-bool alerta = false;
-bool water = false;
+// 3) Sensor de vazao
+unsigned int Wcount = 0;   // Contador de pulso do sensor de vazao
+const float FATOR_CALIBRACAO = 4.5; // Fator de calibracao par ao sensor de vazao
 float fluxo = 0;
 float volume = 0;
 unsigned long before_time = 0;
+// 4) Warning variables
+bool alerta = false;
+bool water = false;
 
 // Funcao de inicializacao dos objetos
 void setup(){
@@ -64,10 +69,10 @@ void loop(){
         return;
     }
     // Apresentacao dos dados no Monitor Serial
+    Serial.print("Enviando um total de " + String(count) + " pacotes\n");
     Serial.print("Humidade do solo: " + String(humidade_solo) + " %\n");
     Serial.print("Temperatura do ambiente: " + String(temperatura) + " °C\n");
     Serial.print("Humidade do ambiente: " + String(humidade) + " %\n");
-    Serial.print("Enviando um total de " + String(count) + " pacotes\n");
 
     // Avaliacao das condicoes de humidade e temperatura
     // Atribuir o valor limite em litros para a capacidade do tanque de agua utilizada para irrigacao
